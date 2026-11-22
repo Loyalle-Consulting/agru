@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Único punto de anclaje en las plantillas nativas de Odoo: el <head>
+         de website.layout, presente en absolutamente todas las páginas del
+         sitio. Se evita a propósito tocar las plantillas de la tienda, ficha
+         de producto o carrito directamente (esas cambian más seguido entre
+         versiones de Odoo); todo lo demás lo hace JS leyendo estos metadatos. -->
+    <template id="_agru_currency_toggle_head" inherit_id="website.layout" name="AGRU - Metadatos de moneda secundaria">
+        <xpath expr="//head" position="inside">
+            <t t-set="_agru_secondary_data" t-value="website.get_agru_secondary_currency()"/>
+            <t t-set="_agru_displayed_currency" t-value="_agru_secondary_data[0]"/>
+            <t t-set="_agru_secondary_currency" t-value="_agru_secondary_data[1]"/>
+            <t t-set="_agru_secondary_rate" t-value="_agru_secondary_data[2]"/>
+            <t t-if="_agru_secondary_currency">
+                <meta name="agru-currency-code" t-att-content="_agru_secondary_currency.name"/>
+                <meta name="agru-currency-symbol" t-att-content="_agru_secondary_currency.symbol"/>
+                <meta name="agru-currency-rate" t-att-content="_agru_secondary_rate"/>
+                <meta name="agru-currency-main-code" t-att-content="_agru_displayed_currency.name"/>
+                <meta name="agru-currency-main-symbol" t-att-content="_agru_displayed_currency.symbol"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

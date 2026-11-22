@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_product_list_agru_stock_visibility" model="ir.ui.view">
+        <field name="name">product.product.list.agru.stock.visibility</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="after">
+                <field name="agru_warehouse_stock_display" string="Stock por bodega" optional="show"/>
+                <field name="qty_available" string="Físico" optional="show"/>
+                <field name="outgoing_qty" string="Salidas previstas" optional="show"/>
+                <field name="vv_unreserved_out_qty" string="Sin reservar" optional="show"/>
+                <field name="vv_reserved_out_qty" string="Reservadas" optional="show"/>
+                <field name="free_qty" string="Disponible" optional="show" decoration-danger="free_qty &lt; 0" decoration-warning="free_qty == 0"/>
+                <field name="vv_po_pending_qty" string="OC por recibir" optional="show"/>
+                <field name="virtual_available" string="Pronosticado" optional="show" decoration-danger="virtual_available &lt; 0" decoration-warning="virtual_available == 0"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_list_agru_stock_visibility" model="ir.ui.view">
+        <field name="name">product.template.list.agru.stock.visibility</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="after">
+                <field name="vv_available_qty" string="Disponible" optional="show" decoration-danger="vv_available_qty &lt; 0" decoration-warning="vv_available_qty == 0"/>
+                <field name="agru_warehouse_stock_display" string="Stock por bodega" optional="show"/>
+                <field name="vv_physical_qty" string="Físico" optional="show"/>
+                <field name="vv_outgoing_qty" string="Salidas previstas" optional="show"/>
+                <field name="vv_unreserved_out_qty" string="Sin reservar" optional="show"/>
+                <field name="vv_reserved_out_qty" string="Reservadas" optional="show"/>
+                <field name="vv_po_pending_qty" string="OC por recibir" optional="show"/>
+                <field name="vv_forecast_qty" string="Pronosticado" optional="show" decoration-danger="vv_forecast_qty &lt; 0" decoration-warning="vv_forecast_qty == 0"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

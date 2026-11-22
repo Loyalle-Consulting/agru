@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_agru_stock_visibility" model="ir.ui.view">
+        <field name="name">sale.order.form.agru.stock.visibility</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//form//field[@name='product_uom_id']" position="after">
+                <group string="Disponibilidad AGRU" invisible="not product_id">
+                    <field name="agru_warehouse_stock_display" string="Stock por bodega" readonly="1"/>
+                    <field name="vv_stock_physical" readonly="1"/>
+                    <field name="vv_outgoing_qty" readonly="1"/>
+                    <field name="vv_unreserved_out_qty" readonly="1"/>
+                    <field name="vv_reserved_out_qty" readonly="1"/>
+                    <field name="vv_free_qty" readonly="1" decoration-danger="vv_free_qty &lt; 0" decoration-warning="vv_free_qty == 0"/>
+                    <field name="vv_po_pending_qty" readonly="1"/>
+                    <field name="vv_forecast_qty" readonly="1" decoration-danger="vv_forecast_qty &lt; 0" decoration-warning="vv_forecast_qty == 0"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
+                <field name="vv_free_qty" string="Disponible" optional="hide" readonly="1"/>
+                <field name="vv_po_pending_qty" string="OC por recibir" optional="hide" readonly="1"/>
+                <field name="vv_forecast_qty" string="Pronosticado" optional="hide" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_move_reset_borrador" model="ir.ui.view">
+            <field name="name">view.account.move.reset.borrador</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header" position="inside">
+                    <button name="action_editar_factura_reset_draft"
+                            string="Restablecer a Borrador"
+                            type="object"
+                            class="btn btn-warning"
+                            invisible="state != 'posted'"
+                            groups="Restablecer_Estado_Borrador_Factura_v19.group_reset_invoice_to_draft"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

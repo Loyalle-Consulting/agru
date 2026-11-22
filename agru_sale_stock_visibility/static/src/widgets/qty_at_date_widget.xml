@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="agru_sale_stock_visibility.QtyAtDatePopover"
+       t-inherit="sale_stock.QtyAtDatePopover"
+       t-inherit-mode="extension">
+
+        <!-- Mantener intacta la tabla estándar de Odoo 19. Otros módulos
+             oficiales (por ejemplo sale_stock_product_expiry) heredan nodos
+             internos como availableLabel. -->
+        <xpath expr="//table[contains(@class, 'table')]" position="after">
+            <div class="mt-2 pt-2 border-top">
+                <h6 class="mb-2">Disponibilidad AGRU</h6>
+                <table class="table table-borderless table-sm mb-1">
+                    <tbody>
+                        <tr t-foreach="props.record.data.agru_warehouse_stock || []" t-as="wh" t-key="wh.id">
+                            <td><t t-out="wh.name"/></td>
+                            <td class="text-end">
+                                <b t-out="wh.qty"/> <t t-out="props.record.data.product_uom_id[1]"/>
+                            </td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Stock físico total</strong></td>
+                            <td class="text-end"><b t-out="props.record.data.vv_stock_physical"/> <t t-out="props.record.data.product_uom_id[1]"/></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas previstas</td>
+                            <td class="text-end"><b t-out="props.record.data.vv_outgoing_qty"/> <t t-out="props.record.data.product_uom_id[1]"/></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas aún no reservadas</td>
+                            <td class="text-end"><b t-out="props.record.data.vv_unreserved_out_qty"/> <t t-out="props.record.data.product_uom_id[1]"/></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas reservadas</td>
+                            <td class="text-end"><b t-out="props.record.data.vv_reserved_out_qty"/> <t t-out="props.record.data.product_uom_id[1]"/></td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Disponible inmediato</strong></td>
+                            <td class="text-end">
+                                <b t-out="props.record.data.vv_free_qty"
+                                   t-att-class="props.record.data.vv_free_qty &lt;= 0 ? 'text-danger' : 'text-success'"/>
+                                <t t-out="props.record.data.product_uom_id[1]"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OC por recibir</td>
+                            <td class="text-end"><b t-out="props.record.data.vv_po_pending_qty"/> <t t-out="props.record.data.product_uom_id[1]"/></td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Pronosticado</strong></td>
+                            <td class="text-end">
+                                <b t-out="props.record.data.vv_forecast_qty"
+                                   t-att-class="props.record.data.vv_forecast_qty &lt; 0 ? 'text-danger' : ''"/>
+                                <t t-out="props.record.data.product_uom_id[1]"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </t>
+</templates>

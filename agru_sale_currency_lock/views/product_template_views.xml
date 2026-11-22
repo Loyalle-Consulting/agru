@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_template_form_agru_currency_lock" model="ir.ui.view">
+        <field name="name">product.template.form.loyalle.currency.lock</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- El símbolo que se muestra junto al Precio de venta viene,
+                 por defecto, de la moneda de la compañía (currency_id).
+                 Se cambia para que refleje la moneda que se declare en
+                 "Moneda del precio base" — así el símbolo ($ / USD / UF)
+                 cambia según lo que se elija ahí, en vez de quedar
+                 siempre en pesos. -->
+            <field name="list_price" position="attributes">
+                <attribute name="options">{'currency_field': 'list_price_currency_id'}</attribute>
+            </field>
+
+            <!-- El selector de moneda va DEBAJO del precio (misma columna,
+                 su propia fila), no al lado — para que no quede apretado
+                 contra el widget del precio. -->
+            <field name="list_price" position="after">
+                <newline/>
+                <field name="list_price_currency_id"
+                       string="Moneda del precio base"
+                       options="{'no_create': True, 'no_open': True}"
+                       colspan="2"/>
+                <newline/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function model="res.country.commune" name="_load_agrusa_chile_communes"/>
+</odoo>

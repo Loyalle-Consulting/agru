@@ -1,0 +1,10 @@
+{'name': 'Restablecer Estado Borrador Factura',
+ 'version': '19.0.1.0.0',
+ 'author': 'Loyalle Consulting',
+ 'license': 'LGPL-3',
+ 'category': 'Accounting',
+ 'depends': ['account', 'l10n_cl_edi', 'account_edi'],
+ 'data': ['security/editar_factura_groups.xml', 'views/account_move_view.xml'],
+ 'installable': True,
+ 'application': False,
+ 'summary': 'Botón con grupo para restablecer facturas/NC a borrador (Chile DTE) en Odoo 19'}

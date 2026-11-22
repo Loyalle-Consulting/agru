@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_agru_currency_lock" model="ir.ui.view">
+        <field name="name">sale.order.form.loyalle.currency.lock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Bloque de moneda de cotización, ANTES de "Términos de pago",
+                 cada campo en su propia fila. Editable solo mientras el
+                 pedido esté en Presupuesto/Cotización enviada (según el
+                 campo state real, no una bandera propia). -->
+            <field name="payment_term_id" position="before">
+                <field name="total_currency_id"
+                       string="Moneda cotización"
+                       options="{'no_create': True, 'no_open': True}"
+                       readonly="state not in ('draft', 'sent')"
+                       colspan="2"/>
+                <newline/>
+                <field name="total_currency_rate"
+                       string="Tasa de cambio"
+                       readonly="state not in ('draft', 'sent')"
+                       colspan="2"/>
+                <newline/>
+                <field name="original_currency_id" invisible="1"/>
+                <field name="total_currency_rate_date" invisible="1"/>
+                <field name="total_currency_locked" invisible="1"/>
+            </field>
+
+            <!-- price_unit_original debe estar presente (oculto) dentro de
+                 las líneas del pedido para no perder su valor entre onchanges. -->
+            <xpath expr="//field[@name='order_line']//field[@name='product_uom_qty']"
+                   position="after">
+                <field name="price_unit_original" column_invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

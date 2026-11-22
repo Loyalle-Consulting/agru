@@ -1,0 +1,345 @@
+number,state_code,region_source,province,name
+1,CL-AP,Arica y Parinacota,Arica,Arica
+2,CL-AP,Arica y Parinacota,Arica,Camarones
+3,CL-AP,Arica y Parinacota,Parinacota,Putre
+4,CL-AP,Arica y Parinacota,Parinacota,General Lagos
+5,CL-TA,Tarapacá,Iquique,Iquique
+6,CL-TA,Tarapacá,Iquique,Alto Hospicio
+7,CL-TA,Tarapacá,Tamarugal,Pozo Almonte
+8,CL-TA,Tarapacá,Tamarugal,Camiña
+9,CL-TA,Tarapacá,Tamarugal,Colchane
+10,CL-TA,Tarapacá,Tamarugal,Huara
+11,CL-TA,Tarapacá,Tamarugal,Pica
+12,CL-AN,Antofagasta,Antofagasta,Antofagasta
+13,CL-AN,Antofagasta,Antofagasta,Mejillones
+14,CL-AN,Antofagasta,Antofagasta,Sierra Gorda
+15,CL-AN,Antofagasta,Antofagasta,Taltal
+16,CL-AN,Antofagasta,El Loa,Calama
+17,CL-AN,Antofagasta,El Loa,Ollagüe
+18,CL-AN,Antofagasta,El Loa,San Pedro de Atacama
+19,CL-AN,Antofagasta,Tocopilla,Tocopilla
+20,CL-AN,Antofagasta,Tocopilla,María Elena
+21,CL-AT,Atacama,Copiapó,Copiapó
+22,CL-AT,Atacama,Copiapó,Caldera
+23,CL-AT,Atacama,Copiapó,Tierra Amarilla
+24,CL-AT,Atacama,Chañaral,Chañaral
+25,CL-AT,Atacama,Chañaral,Diego de Almagro
+26,CL-AT,Atacama,Huasco,Vallenar
+27,CL-AT,Atacama,Huasco,Alto del Carmen
+28,CL-AT,Atacama,Huasco,Freirina
+29,CL-AT,Atacama,Huasco,Huasco
+30,CL-CO,Coquimbo,Elqui,La Serena
+31,CL-CO,Coquimbo,Elqui,Coquimbo
+32,CL-CO,Coquimbo,Elqui,Andacollo
+33,CL-CO,Coquimbo,Elqui,La Higuera
+34,CL-CO,Coquimbo,Elqui,Paihuano
+35,CL-CO,Coquimbo,Elqui,Vicuña
+36,CL-CO,Coquimbo,Choapa,Illapel
+37,CL-CO,Coquimbo,Choapa,Canela
+38,CL-CO,Coquimbo,Choapa,Los Vilos
+39,CL-CO,Coquimbo,Choapa,Salamanca
+40,CL-CO,Coquimbo,Limarí,Ovalle
+41,CL-CO,Coquimbo,Limarí,Combarbalá
+42,CL-CO,Coquimbo,Limarí,Monte Patria
+43,CL-CO,Coquimbo,Limarí,Punitaqui
+44,CL-CO,Coquimbo,Limarí,Río Hurtado
+45,CL-VS,Valparaíso,Valparaíso,Valparaíso
+46,CL-VS,Valparaíso,Valparaíso,Casablanca
+47,CL-VS,Valparaíso,Valparaíso,Concón
+48,CL-VS,Valparaíso,Valparaíso,Juan Fernández
+49,CL-VS,Valparaíso,Valparaíso,Puchuncaví
+50,CL-VS,Valparaíso,Valparaíso,Quintero
+51,CL-VS,Valparaíso,Valparaíso,Viña del Mar
+52,CL-VS,Valparaíso,Los Andes,Los Andes
+53,CL-VS,Valparaíso,Los Andes,Calle Larga
+54,CL-VS,Valparaíso,Los Andes,Rinconada
+55,CL-VS,Valparaíso,Los Andes,San Esteban
+56,CL-VS,Valparaíso,Petorca,La Ligua
+57,CL-VS,Valparaíso,Petorca,Cabildo
+58,CL-VS,Valparaíso,Petorca,Papudo
+59,CL-VS,Valparaíso,Petorca,Petorca
+60,CL-VS,Valparaíso,Petorca,Zapallar
+61,CL-VS,Valparaíso,Quillota,Quillota
+62,CL-VS,Valparaíso,Quillota,La Calera
+63,CL-VS,Valparaíso,Quillota,Hijuelas
+64,CL-VS,Valparaíso,Quillota,La Cruz
+65,CL-VS,Valparaíso,Quillota,Nogales
+66,CL-VS,Valparaíso,Marga Marga,Quilpué
+67,CL-VS,Valparaíso,Marga Marga,Villa Alemana
+68,CL-VS,Valparaíso,Marga Marga,Limache
+69,CL-VS,Valparaíso,Marga Marga,Olmué
+70,CL-VS,Valparaíso,San Antonio,San Antonio
+71,CL-VS,Valparaíso,San Antonio,Algarrobo
+72,CL-VS,Valparaíso,San Antonio,Cartagena
+73,CL-VS,Valparaíso,San Antonio,El Quisco
+74,CL-VS,Valparaíso,San Antonio,El Tabo
+75,CL-VS,Valparaíso,San Antonio,Santo Domingo
+76,CL-VS,Valparaíso,San Felipe de Aconcagua,San Felipe
+77,CL-VS,Valparaíso,San Felipe de Aconcagua,Catemu
+78,CL-VS,Valparaíso,San Felipe de Aconcagua,Llaillay
+79,CL-VS,Valparaíso,San Felipe de Aconcagua,Panquehue
+80,CL-VS,Valparaíso,San Felipe de Aconcagua,Putaendo
+81,CL-VS,Valparaíso,San Felipe de Aconcagua,Santa María
+82,CL-VS,Valparaíso,Isla de Pascua,Isla de Pascua
+83,CL-RM,Metropolitana de Santiago,Santiago,Santiago
+84,CL-RM,Metropolitana de Santiago,Santiago,Cerrillos
+85,CL-RM,Metropolitana de Santiago,Santiago,Cerro Navia
+86,CL-RM,Metropolitana de Santiago,Santiago,Conchalí
+87,CL-RM,Metropolitana de Santiago,Santiago,El Bosque
+88,CL-RM,Metropolitana de Santiago,Santiago,Estación Central
+89,CL-RM,Metropolitana de Santiago,Santiago,Huechuraba
+90,CL-RM,Metropolitana de Santiago,Santiago,Independencia
+91,CL-RM,Metropolitana de Santiago,Santiago,La Cisterna
+92,CL-RM,Metropolitana de Santiago,Santiago,La Granja
+93,CL-RM,Metropolitana de Santiago,Santiago,La Florida
+94,CL-RM,Metropolitana de Santiago,Santiago,La Reina
+95,CL-RM,Metropolitana de Santiago,Santiago,Las Condes
+96,CL-RM,Metropolitana de Santiago,Santiago,Lo Barnechea
+97,CL-RM,Metropolitana de Santiago,Santiago,Lo Espejo
+98,CL-RM,Metropolitana de Santiago,Santiago,Lo Prado
+99,CL-RM,Metropolitana de Santiago,Santiago,Macul
+100,CL-RM,Metropolitana de Santiago,Santiago,Maipú
+101,CL-RM,Metropolitana de Santiago,Santiago,Ñuñoa
+102,CL-RM,Metropolitana de Santiago,Santiago,Pedro Aguirre Cerda
+103,CL-RM,Metropolitana de Santiago,Santiago,Peñalolén
+104,CL-RM,Metropolitana de Santiago,Santiago,Providencia
+105,CL-RM,Metropolitana de Santiago,Santiago,Pudahuel
+106,CL-RM,Metropolitana de Santiago,Santiago,Quilicura
+107,CL-RM,Metropolitana de Santiago,Santiago,Quinta Normal
+108,CL-RM,Metropolitana de Santiago,Santiago,Recoleta
+109,CL-RM,Metropolitana de Santiago,Santiago,Renca
+110,CL-RM,Metropolitana de Santiago,Santiago,San Joaquín
+111,CL-RM,Metropolitana de Santiago,Santiago,San Miguel
+112,CL-RM,Metropolitana de Santiago,Santiago,San Ramón
+113,CL-RM,Metropolitana de Santiago,Santiago,Vitacura
+114,CL-RM,Metropolitana de Santiago,Cordillera,Puente Alto
+115,CL-RM,Metropolitana de Santiago,Cordillera,San José de Maipo
+116,CL-RM,Metropolitana de Santiago,Cordillera,Pirque
+117,CL-RM,Metropolitana de Santiago,Chacabuco,Colina
+118,CL-RM,Metropolitana de Santiago,Chacabuco,Lampa
+119,CL-RM,Metropolitana de Santiago,Chacabuco,Tiltil
+120,CL-RM,Metropolitana de Santiago,Maipo,San Bernardo
+121,CL-RM,Metropolitana de Santiago,Maipo,Buin
+122,CL-RM,Metropolitana de Santiago,Maipo,Calera de Tango
+123,CL-RM,Metropolitana de Santiago,Maipo,Paine
+124,CL-RM,Metropolitana de Santiago,Melipilla,Melipilla
+125,CL-RM,Metropolitana de Santiago,Melipilla,Alhué
+126,CL-RM,Metropolitana de Santiago,Melipilla,Curacaví
+127,CL-RM,Metropolitana de Santiago,Melipilla,María Pinto
+128,CL-RM,Metropolitana de Santiago,Melipilla,San Pedro
+129,CL-RM,Metropolitana de Santiago,Talagante,Talagante
+130,CL-RM,Metropolitana de Santiago,Talagante,El Monte
+131,CL-RM,Metropolitana de Santiago,Talagante,Isla de Maipo
+132,CL-RM,Metropolitana de Santiago,Talagante,Padre Hurtado
+133,CL-RM,Metropolitana de Santiago,Talagante,Peñaflor
+134,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Rancagua
+135,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Codegua
+136,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Coinco
+137,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Coltauco
+138,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Doñihue
+139,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Graneros
+140,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Las Cabras
+141,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Machalí
+142,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Malloa
+143,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Mostazal
+144,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Olivar
+145,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Peumo
+146,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Pichidegua
+147,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Quinta de Tilcoco
+148,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Rengo
+149,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,Requínoa
+150,CL-LI,Libertador Gral. Bernardo O'Higgins,Cachapoal,San Vicente
+151,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,Pichilemu
+152,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,La Estrella
+153,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,Litueche
+154,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,Marchihue
+155,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,Navidad
+156,CL-LI,Libertador Gral. Bernardo O'Higgins,Cardenal Caro,Paredones
+157,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,San Fernando
+158,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Chépica
+159,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Chimbarongo
+160,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Lolol
+161,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Nancagua
+162,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Palmilla
+163,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Peralillo
+164,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Placilla
+165,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Pumanque
+166,CL-LI,Libertador Gral. Bernardo O'Higgins,Colchagua,Santa Cruz
+167,CL-ML,Maule,Talca,Talca
+168,CL-ML,Maule,Talca,Constitución
+169,CL-ML,Maule,Talca,Curepto
+170,CL-ML,Maule,Talca,Empedrado
+171,CL-ML,Maule,Talca,Maule
+172,CL-ML,Maule,Talca,Pelarco
+173,CL-ML,Maule,Talca,Pencahue
+174,CL-ML,Maule,Talca,Río Claro
+175,CL-ML,Maule,Talca,San Clemente
+176,CL-ML,Maule,Curicó,Curicó
+177,CL-ML,Maule,Curicó,Hualañé
+178,CL-ML,Maule,Curicó,Licantén
+179,CL-ML,Maule,Curicó,Molina
+180,CL-ML,Maule,Curicó,Rauco
+181,CL-ML,Maule,Curicó,Romeral
+182,CL-ML,Maule,Curicó,Sagrada Familia
+183,CL-ML,Maule,Curicó,Teno
+184,CL-ML,Maule,Curicó,Vichuquén
+185,CL-ML,Maule,Cauquenes,Cauquenes
+186,CL-ML,Maule,Cauquenes,Chanco
+187,CL-ML,Maule,Cauquenes,Pelluhue
+188,CL-ML,Maule,Linares,Linares
+189,CL-ML,Maule,Linares,Colbún
+190,CL-ML,Maule,Linares,Longaví
+191,CL-ML,Maule,Linares,Parral
+192,CL-ML,Maule,Linares,Retiro
+193,CL-ML,Maule,Linares,San Javier
+194,CL-ML,Maule,Linares,Villa Alegre
+195,CL-ML,Maule,Linares,Yerbas Buenas
+196,CL-NB,Ñuble,Diguillín,Chillán
+197,CL-NB,Ñuble,Diguillín,Bulnes
+198,CL-NB,Ñuble,Diguillín,Chillán Viejo
+199,CL-NB,Ñuble,Diguillín,El Carmen
+200,CL-NB,Ñuble,Diguillín,Pemuco
+201,CL-NB,Ñuble,Diguillín,Pinto
+202,CL-NB,Ñuble,Diguillín,Quillón
+203,CL-NB,Ñuble,Diguillín,San Ignacio
+204,CL-NB,Ñuble,Diguillín,Yungay
+205,CL-NB,Ñuble,Itata,Quirihue
+206,CL-NB,Ñuble,Itata,Cobquecura
+207,CL-NB,Ñuble,Itata,Coelemu
+208,CL-NB,Ñuble,Itata,Ninhue
+209,CL-NB,Ñuble,Itata,Portezuelo
+210,CL-NB,Ñuble,Itata,Ránquil
+211,CL-NB,Ñuble,Itata,Treguaco
+212,CL-NB,Ñuble,Punilla,San Carlos
+213,CL-NB,Ñuble,Punilla,Coihueco
+214,CL-NB,Ñuble,Punilla,Ñiquén
+215,CL-NB,Ñuble,Punilla,San Fabián
+216,CL-NB,Ñuble,Punilla,San Nicolás
+217,CL-BI,Biobío,Concepción,Concepción
+218,CL-BI,Biobío,Concepción,Chiguayante
+219,CL-BI,Biobío,Concepción,Florida
+220,CL-BI,Biobío,Concepción,Hualqui
+221,CL-BI,Biobío,Concepción,Lota
+222,CL-BI,Biobío,Concepción,Penco
+223,CL-BI,Biobío,Concepción,San Pedro de la Paz
+224,CL-BI,Biobío,Concepción,Santa Juana
+225,CL-BI,Biobío,Concepción,Talcahuano
+226,CL-BI,Biobío,Concepción,Tomé
+227,CL-BI,Biobío,Concepción,Hualpén
+228,CL-BI,Biobío,Concepción,Coronel
+229,CL-BI,Biobío,Arauco,Lebu
+230,CL-BI,Biobío,Arauco,Arauco
+231,CL-BI,Biobío,Arauco,Cañete
+232,CL-BI,Biobío,Arauco,Contulmo
+233,CL-BI,Biobío,Arauco,Curanilahue
+234,CL-BI,Biobío,Arauco,Los Alamos
+235,CL-BI,Biobío,Arauco,Tirúa
+236,CL-BI,Biobío,Biobío,Los Ángeles
+237,CL-BI,Biobío,Biobío,Antuco
+238,CL-BI,Biobío,Biobío,Cabrero
+239,CL-BI,Biobío,Biobío,Laja
+240,CL-BI,Biobío,Biobío,Mulchén
+241,CL-BI,Biobío,Biobío,Nacimiento
+242,CL-BI,Biobío,Biobío,Negrete
+243,CL-BI,Biobío,Biobío,Quilaco
+244,CL-BI,Biobío,Biobío,Quilleco
+245,CL-BI,Biobío,Biobío,San Rosendo
+246,CL-BI,Biobío,Biobío,Santa Bárbara
+247,CL-BI,Biobío,Biobío,Tucapel
+248,CL-BI,Biobío,Biobío,Yumbel
+249,CL-BI,Biobío,Biobío,Alto Biobío
+250,CL-AR,La Araucanía,Cautín,Temuco
+251,CL-AR,La Araucanía,Cautín,Carahue
+252,CL-AR,La Araucanía,Cautín,Cholchol
+253,CL-AR,La Araucanía,Cautín,Cunco
+254,CL-AR,La Araucanía,Cautín,Curarrehue
+255,CL-AR,La Araucanía,Cautín,Freire
+256,CL-AR,La Araucanía,Cautín,Galvarino
+257,CL-AR,La Araucanía,Cautín,Gorbea
+258,CL-AR,La Araucanía,Cautín,Lautaro
+259,CL-AR,La Araucanía,Cautín,Loncoche
+260,CL-AR,La Araucanía,Cautín,Melipeuco
+261,CL-AR,La Araucanía,Cautín,Nueva Imperial
+262,CL-AR,La Araucanía,Cautín,Padre Las Casas
+263,CL-AR,La Araucanía,Cautín,Perquenco
+264,CL-AR,La Araucanía,Cautín,Pitrufquén
+265,CL-AR,La Araucanía,Cautín,Pucón
+266,CL-AR,La Araucanía,Cautín,Saavedra
+267,CL-AR,La Araucanía,Cautín,Teodoro Schmidt
+268,CL-AR,La Araucanía,Cautín,Toltén
+269,CL-AR,La Araucanía,Cautín,Vilcún
+270,CL-AR,La Araucanía,Cautín,Villarrica
+271,CL-AR,La Araucanía,Malleco,Angol
+272,CL-AR,La Araucanía,Malleco,Collipulli
+273,CL-AR,La Araucanía,Malleco,Curacautín
+274,CL-AR,La Araucanía,Malleco,Ercilla
+275,CL-AR,La Araucanía,Malleco,Lonquimay
+276,CL-AR,La Araucanía,Malleco,Los Sauces
+277,CL-AR,La Araucanía,Malleco,Lumaco
+278,CL-AR,La Araucanía,Malleco,Purén
+279,CL-AR,La Araucanía,Malleco,Renaico
+280,CL-AR,La Araucanía,Malleco,Traiguén
+281,CL-AR,La Araucanía,Malleco,Victoria
+282,CL-LR,Los Ríos,Valdivia,Valdivia
+283,CL-LR,Los Ríos,Valdivia,Corral
+284,CL-LR,Los Ríos,Valdivia,Lanco
+285,CL-LR,Los Ríos,Valdivia,Los Lagos
+286,CL-LR,Los Ríos,Valdivia,Máfil
+287,CL-LR,Los Ríos,Valdivia,Mariquina
+288,CL-LR,Los Ríos,Valdivia,Paillaco
+289,CL-LR,Los Ríos,Valdivia,Panguipulli
+290,CL-LR,Los Ríos,Ranco,La Unión
+291,CL-LR,Los Ríos,Ranco,Futrono
+292,CL-LR,Los Ríos,Ranco,Lago Ranco
+293,CL-LR,Los Ríos,Ranco,Río Bueno
+294,CL-LL,Los Lagos,Llanquihue,Puerto Montt
+295,CL-LL,Los Lagos,Llanquihue,Calbuco
+296,CL-LL,Los Lagos,Llanquihue,Cochamó
+297,CL-LL,Los Lagos,Llanquihue,Fresia
+298,CL-LL,Los Lagos,Llanquihue,Frutillar
+299,CL-LL,Los Lagos,Llanquihue,Los Muermos
+300,CL-LL,Los Lagos,Llanquihue,Llanquihue
+301,CL-LL,Los Lagos,Llanquihue,Maullín
+302,CL-LL,Los Lagos,Llanquihue,Puerto Varas
+303,CL-LL,Los Lagos,Chiloé,Castro
+304,CL-LL,Los Lagos,Chiloé,Ancud
+305,CL-LL,Los Lagos,Chiloé,Chonchi
+306,CL-LL,Los Lagos,Chiloé,Curaco de Vélez
+307,CL-LL,Los Lagos,Chiloé,Dalcahue
+308,CL-LL,Los Lagos,Chiloé,Puqueldón
+309,CL-LL,Los Lagos,Chiloé,Queilén
+310,CL-LL,Los Lagos,Chiloé,Quellón
+311,CL-LL,Los Lagos,Chiloé,Quemchi
+312,CL-LL,Los Lagos,Chiloé,Quinchao
+313,CL-LL,Los Lagos,Osorno,Osorno
+314,CL-LL,Los Lagos,Osorno,Puerto Octay
+315,CL-LL,Los Lagos,Osorno,Puyehue
+316,CL-LL,Los Lagos,Osorno,Purranque
+317,CL-LL,Los Lagos,Osorno,Río Negro
+318,CL-LL,Los Lagos,Palena,Chaitén
+319,CL-LL,Los Lagos,Palena,Futaleufú
+320,CL-LL,Los Lagos,Palena,Hualaihué
+321,CL-LL,Los Lagos,Palena,Palena
+322,CL-LL,Los Lagos,General Prat,San Juan de la Costa
+323,CL-LL,Los Lagos,General Prat,San Pablo
+324,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Coyhaique,Coyhaique
+325,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Coyhaique,Lago Verde
+326,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Aisén,Aysén
+327,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Aisén,Cisnes
+328,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Aisén,Guaitecas
+329,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Capitán Prat,Cochrane
+330,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Capitán Prat,O'Higgins
+331,CL-AI,Aysén del G. Carlos Ibáñez del Campo,Capitán Prat,Tortel
+332,CL-AI,Aysén del G. Carlos Ibáñez del Campo,General Carrera,Chile Chico
+333,CL-AI,Aysén del G. Carlos Ibáñez del Campo,General Carrera,Río Ibáñez
+334,CL-MA,Magallanes y de la Antártica Chilena,Magallanes,Punta Arenas
+335,CL-MA,Magallanes y de la Antártica Chilena,Magallanes,Río Verde
+336,CL-MA,Magallanes y de la Antártica Chilena,Magallanes,Laguna Blanca
+337,CL-MA,Magallanes y de la Antártica Chilena,Magallanes,San Gregorio
+338,CL-MA,Magallanes y de la Antártica Chilena,Tierra del Fuego,Porvenir
+339,CL-MA,Magallanes y de la Antártica Chilena,Tierra del Fuego,Primavera
+340,CL-MA,Magallanes y de la Antártica Chilena,Tierra del Fuego,Timaukel
+341,CL-MA,Magallanes y de la Antártica Chilena,Última Esperanza,Natales
+342,CL-MA,Magallanes y de la Antártica Chilena,Última Esperanza,Torres del Paine
+343,CL-MA,Magallanes y de la Antártica Chilena,Antártica Chilena,Cabo de Hornos
+344,CL-MA,Magallanes y de la Antártica Chilena,Antártica Chilena,Antártica

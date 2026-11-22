@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_agrusa_commune" model="ir.ui.view">
+        <field name="name">res.partner.form.agrusa.commune</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="is_chilean_address" invisible="1"/>
+                <field name="commune_id"
+                       placeholder="Comuna"
+                       domain="[('state_id', '=', state_id)]"
+                       options="{'no_create': True, 'no_create_edit': True}"
+                       invisible="not is_chilean_address"/>
+            </field>
+            <field name="city" position="attributes">
+                <attribute name="invisible">is_chilean_address</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

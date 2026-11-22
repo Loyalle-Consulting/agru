@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="agru_sale_stock_visibility.ForecastedVisibility"
+       t-inherit="stock.Forecasted"
+       t-inherit-mode="extension">
+
+        <xpath expr="//ForecastedHeader" position="after">
+            <div t-if="docs.vv_visibility" class="border rounded p-3 mb-3">
+                <h5 class="mb-3">Disponibilidad AGRU</h5>
+
+                <table class="table table-sm mb-0">
+                    <tbody>
+                        <tr t-foreach="docs.vv_visibility.warehouse_stock || []" t-as="wh" t-key="wh.id">
+                            <td><t t-esc="wh.name"/></td>
+                            <td class="text-end"><t t-esc="wh.qty"/></td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Stock físico total</strong></td>
+                            <td class="text-end"><strong><t t-esc="docs.vv_visibility.physical_qty"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas previstas</td>
+                            <td class="text-end"><t t-esc="docs.vv_visibility.outgoing_qty"/></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas aún no reservadas</td>
+                            <td class="text-end"><t t-esc="docs.vv_visibility.unreserved_out_qty"/></td>
+                        </tr>
+                        <tr>
+                            <td>Salidas reservadas</td>
+                            <td class="text-end"><t t-esc="docs.vv_visibility.reserved_out_qty"/></td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Disponible inmediato</strong></td>
+                            <td class="text-end">
+                                <strong t-att-class="docs.vv_visibility.available_qty &lt;= 0 ? 'text-danger' : 'text-success'">
+                                    <t t-esc="docs.vv_visibility.available_qty"/>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OC por recibir</td>
+                            <td class="text-end"><t t-esc="docs.vv_visibility.po_pending_qty"/></td>
+                        </tr>
+                        <tr class="border-top">
+                            <td><strong>Pronosticado</strong></td>
+                            <td class="text-end">
+                                <strong t-att-class="docs.vv_visibility.forecast_qty &lt; 0 ? 'text-danger' : ''">
+                                    <t t-esc="docs.vv_visibility.forecast_qty"/>
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div t-if="docs.vv_visibility &amp;&amp; docs.vv_visibility.commercial_import_rows &amp;&amp; docs.vv_visibility.commercial_import_rows.length" class="border rounded p-3 mb-3">
+                <h5 class="mb-2">Disponibilidad comercial por importación</h5>
+                <p class="text-muted small mb-2">Los saldos comerciales descuentan las ventas confirmadas asociadas a cada línea de OC. No representan el stock físico ni las cantidades pendientes de recepción.</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-1">
+                        <thead>
+                            <tr>
+                                <th>Orden de compra</th>
+                                <th>Producto</th>
+                                <th>ETA</th>
+                                <th class="text-end">Comprado</th>
+                                <th class="text-end">Recibido</th>
+                                <th class="text-end">Pendiente recepción</th>
+                                <th class="text-end">Comprometido comercial</th>
+                                <th class="text-end">Disponible comercial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs.vv_visibility.commercial_import_rows" t-as="item" t-key="item.id">
+                                <td><t t-esc="item.order"/></td>
+                                <td><t t-esc="item.product"/></td>
+                                <td><t t-esc="item.eta"/></td>
+                                <td class="text-end"><t t-esc="item.ordered"/></td>
+                                <td class="text-end"><t t-esc="item.received"/></td>
+                                <td class="text-end"><t t-esc="item.pending"/></td>
+                                <td class="text-end"><t t-esc="item.committed"/></td>
+                                <td class="text-end fw-bold" t-att-class="item.available &lt;= 0 ? 'text-danger' : 'text-success'"><t t-esc="item.available"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="small text-muted">Cantidades expresadas en la unidad de medida de cada línea de compra.</div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
