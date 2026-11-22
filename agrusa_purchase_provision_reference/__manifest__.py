@@ -6,7 +6,7 @@
     'author': 'Loyalle Consulting',
     'license': 'LGPL-3',
     'depends': ['purchase_stock'],
-    'data': ['views/purchase_order_views.xml', 'views/stock_picking_views.xml'],
+    'data': ['views/purchase_order_views.xml', 'views/stock_picking_views.xml', 'views/purchase_order_line_views.xml'],
     'installable': True,
     'application': False,
 }

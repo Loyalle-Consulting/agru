@@ -1,11 +1,10 @@
-# AGRUSA - Referencia de provisión
+# AGRUSA - Referencia informativa de provisión (R02)
 
-Campo informativo editable en orden de compra y visible en recepciones vinculadas mediante stock.picking.purchase_id. No modifica operaciones contables ni de inventario. La referencia se refleja dinámicamente en las recepciones relacionadas.
+Módulo Odoo Enterprise 19. Mantiene versión de manifiesto 19.0.1.0.0.
 
-## Prueba
-1. Crear OC con referencia de provisión.
-2. Confirmar OC y abrir recepción generada.
-3. Comprobar que la referencia aparece en la recepción.
-4. Cambiar la referencia de la OC y verificar la actualización en la recepción.
+- Referencia editable en la orden de compra.
+- Referencia relacionada, informativa, en la recepción.
+- Referencia relacionada, informativa, en el historial de compras del producto (`purchase.order.line`, vista `purchase.purchase_order_line_tree`).
+- No altera ventas, contabilidad, inventario, cantidades ni valoraciones.
 
-Nota: si una recepción agrupa movimientos de varias órdenes de compra, `purchase_id` puede no identificar una única OC; revisar ese caso antes de utilizar este campo como identificador único.
+Para actualizar una instalación R01, sustituya la carpeta completa del módulo, despliegue y ejecute **Actualizar** en Aplicaciones para el módulo ya instalado. No es suficiente con reiniciar Odoo.
