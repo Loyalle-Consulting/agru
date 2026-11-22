@@ -1,0 +1,1 @@
+<odoo><record id="group_price_mass_manager" model="res.groups"><field name="name">AGRUSA - Administrar tarifas masivas</field><field name="implied_ids" eval="[(4, ref('sales_team.group_sale_manager'))]"/></record></odoo>

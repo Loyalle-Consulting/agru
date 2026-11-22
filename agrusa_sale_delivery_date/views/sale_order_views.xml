@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="agrusa_sale_delivery_date_form" model="ir.ui.view">
+    <field name="name">sale.order.form.agrusa.delivery.date</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='order_line']//list//field[@name='customer_lead']" position="after">
+        <field name="agrusa_delivery_date_manual" column_invisible="True"/>
+        <field name="agrusa_delivery_date_approx" string="Fecha entrega APROX" optional="show"/>
+      </xpath>
+      <xpath expr="//field[@name='order_line']//form//field[@name='customer_lead']" position="after">
+        <field name="agrusa_delivery_date_manual" invisible="1"/>
+        <field name="agrusa_delivery_date_approx"/>
+        <button name="action_agrusa_reset_delivery_date" type="object"
+                string="Recalcular fecha" invisible="not agrusa_delivery_date_manual"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

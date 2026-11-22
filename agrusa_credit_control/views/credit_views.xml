@@ -1,0 +1,78 @@
+<odoo>
+  <record id="view_credit_authorization_form" model="ir.ui.view">
+    <field name="name">agrusa.credit.authorization.form</field>
+    <field name="model">agrusa.credit.authorization</field>
+    <field name="arch" type="xml">
+      <form string="Autorizacion de credito">
+        <header>
+          <button name="action_approve" type="object" string="Aprobar" class="btn-primary" groups="agrusa_credit_control.group_credit_authorizer" invisible="state != 'pending'"/>
+          <button name="action_reject" type="object" string="Rechazar" groups="agrusa_credit_control.group_credit_authorizer" invisible="state != 'pending'"/>
+          <field name="state" widget="statusbar" statusbar_visible="pending,approved,rejected"/>
+        </header>
+        <sheet><group><group>
+          <field name="sale_id" readonly="1"/>
+          <field name="partner_id" readonly="1"/>
+          <field name="amount" readonly="1"/>
+          <field name="currency_id" invisible="1"/>
+          <field name="company_id" readonly="1"/>
+        </group><group>
+          <field name="requested_by" readonly="1"/>
+          <field name="approved_by" readonly="1"/>
+          <field name="approved_at" readonly="1"/>
+        </group></group>
+        <group><field name="reason" readonly="1"/><field name="decision_note" readonly="state != 'pending'"/></group>
+        </sheet><chatter/></form>
+    </field>
+  </record>
+  <record id="view_credit_authorization_list" model="ir.ui.view">
+    <field name="name">agrusa.credit.authorization.list</field>
+    <field name="model">agrusa.credit.authorization</field>
+    <field name="arch" type="xml"><list><field name="sale_id"/><field name="partner_id"/><field name="amount"/><field name="currency_id" column_invisible="True"/><field name="state"/><field name="requested_by"/><field name="approved_by"/></list></field>
+  </record>
+  <record id="action_credit_authorizations" model="ir.actions.act_window">
+    <field name="name">Autorizaciones de credito</field>
+    <field name="res_model">agrusa.credit.authorization</field>
+    <field name="view_mode">list,form</field>
+  </record>
+  <menuitem id="menu_credit_authorizations" name="Autorizaciones de credito" parent="sale.sale_order_menu" action="action_credit_authorizations" sequence="90"/>
+  <record id="sale_credit_form" model="ir.ui.view">
+    <field name="name">sale.order.form.agrusa.credit</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//header" position="inside">
+        <field name="agrusa_credit_state" widget="badge" invisible="state not in ('draft','sent')"/>
+        <button name="action_agrusa_request_credit" type="object" string="Solicitar autorizacion credito" invisible="state not in ('draft','sent') or agrusa_credit_state != 'blocked'"/>
+      </xpath>
+      <xpath expr="//sheet/notebook" position="inside">
+        <page string="Autorizaciones credito"><field name="agrusa_credit_authorization_ids" readonly="1"><list><field name="state"/><field name="amount"/><field name="currency_id" column_invisible="True"/><field name="requested_by"/><field name="approved_by"/><field name="approved_at"/></list></field></page>
+      </xpath>
+    </field>
+  </record>
+  <record id="partner_agrusa_credit_panel" model="ir.ui.view">
+    <field name="name">res.partner.form.agrusa.credit.panel</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="AGRUSA - Control de credito" name="agrusa_credit_panel">
+          <group>
+            <group string="Cupo y exposicion">
+              <field name="agrusa_credit_currency_id" invisible="1"/>
+              <field name="credit_limit" readonly="1"/>
+              <field name="agrusa_credit_invoice_balance" readonly="1"/>
+              <field name="agrusa_credit_order_commitment" readonly="1"/>
+              <field name="agrusa_credit_used" readonly="1"/>
+              <field name="agrusa_credit_available" readonly="1"/>
+            </group>
+            <group string="Riesgo">
+              <field name="agrusa_credit_overdue" readonly="1"/>
+              <field name="agrusa_credit_status" widget="badge" readonly="1"/>
+            </group>
+          </group>
+          <div class="text-muted">Valores calculados para la empresa activa. Los pedidos confirmados se consideran hasta su facturacion; el saldo de las facturas se reduce al conciliar pagos.</div>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

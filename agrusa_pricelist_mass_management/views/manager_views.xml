@@ -1,0 +1,23 @@
+<odoo>
+  <record id="view_price_wizard_form" model="ir.ui.view">
+    <field name="name">agrusa.price.wizard.form</field><field name="model">agrusa.price.wizard</field>
+    <field name="arch" type="xml"><form string="AGRUSA - Gestion masiva de tarifas">
+      <header><button name="action_export" type="object" string="1. Exportar Excel" class="btn-secondary" invisible="state == 'done'"/>
+      <button name="action_preview" type="object" string="2. Validar y previsualizar" class="btn-primary" invisible="state == 'done'"/>
+      <button name="action_apply" type="object" string="3. Aplicar cambios" class="btn-primary" confirm="¿Aplicar definitivamente las modificaciones a esta tarifa?" invisible="state != 'preview' or error_rows != 0 or changed_rows == 0"/>
+      <field name="state" widget="statusbar" statusbar_visible="draft,preview,done"/></header>
+      <sheet><group><group><field name="pricelist_id" readonly="state != 'draft'" options="{'no_create': True}"/><field name="upload" filename="upload_name" readonly="state == 'done'"/><field name="upload_name" invisible="1"/></group>
+      <group><field name="export_file" filename="export_name" readonly="1"/><field name="export_name" invisible="1"/><field name="batch_id" invisible="state != 'done'"/></group></group>
+      <div class="alert alert-info" role="alert">Exporte la tarifa, edite el Excel y vuelva a cargarlo. La validacion no cambia precios. No se eliminan reglas ausentes del archivo. Maximo 5.000 filas.</div>
+      <group invisible="state == 'draft'"><field name="total_rows"/><field name="changed_rows"/><field name="error_rows"/></group>
+      <field name="preview_ids" invisible="state == 'draft'" readonly="1"><list create="false" delete="false" decoration-danger="status == 'error'" decoration-success="status == 'create'" decoration-warning="status == 'update'"><field name="row_number"/><field name="description"/><field name="status"/><field name="error_message"/></list></field>
+      </sheet></form></field>
+  </record>
+  <record id="action_price_wizard" model="ir.actions.act_window"><field name="name">Gestion masiva de tarifas</field><field name="res_model">agrusa.price.wizard</field><field name="view_mode">form</field><field name="target">current</field></record>
+  <record id="view_batch_list" model="ir.ui.view"><field name="name">agrusa.price.batch.list</field><field name="model">agrusa.price.batch</field><field name="arch" type="xml"><list create="false" delete="false"><field name="applied_at"/><field name="name"/><field name="pricelist_id"/><field name="user_id"/><field name="change_count"/></list></field></record>
+  <record id="view_batch_form" model="ir.ui.view"><field name="name">agrusa.price.batch.form</field><field name="model">agrusa.price.batch</field><field name="arch" type="xml"><form create="false" edit="false" delete="false"><sheet><group><field name="name"/><field name="pricelist_id"/><field name="user_id"/><field name="applied_at"/><field name="change_count"/></group><field name="line_ids"><list create="false" delete="false"><field name="action"/><field name="description"/><field name="item_id"/></list><form><group><field name="action"/><field name="description"/><field name="item_id"/><field name="before"/><field name="after"/></group></form></field></sheet><chatter/></form></field></record>
+  <record id="action_price_batches" model="ir.actions.act_window"><field name="name">Historial de actualizaciones</field><field name="res_model">agrusa.price.batch</field><field name="view_mode">list,form</field></record>
+  <menuitem id="menu_price_root" name="AGRUSA - Tarifas masivas" sequence="70" groups="agrusa_pricelist_mass_management.group_price_mass_manager"/>
+  <menuitem id="menu_price_wizard" name="Importar / Exportar Excel" parent="menu_price_root" action="action_price_wizard" sequence="10"/>
+  <menuitem id="menu_price_batches" name="Historial y auditoria" parent="menu_price_root" action="action_price_batches" sequence="20"/>
+</odoo>

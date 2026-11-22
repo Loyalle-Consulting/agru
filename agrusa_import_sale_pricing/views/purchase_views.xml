@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record id="agrusa_purchase_form" model="ir.ui.view">
+  <field name="name">purchase.order.form.agrusa.import.factor</field>
+  <field name="model">purchase.order</field>
+  <field name="inherit_id" ref="purchase.purchase_order_form"/>
+  <field name="arch" type="xml">
+   <xpath expr="//field[@name='currency_id']" position="after">
+    <field name="agrusa_is_import"/>
+    <field name="agrusa_import_factor" invisible="not agrusa_is_import"/>
+   </xpath>
+   <xpath expr="//field[@name='order_line']//list//field[@name='price_unit']" position="after">
+    <field name="agrusa_import_factor" optional="show"/>
+    <field name="agrusa_import_base_price" optional="show"/>
+    <field name="agrusa_reserved_qty" optional="show"/>
+    <field name="agrusa_available_qty" optional="show"/>
+   </xpath>
+  </field>
+ </record>
+</odoo>

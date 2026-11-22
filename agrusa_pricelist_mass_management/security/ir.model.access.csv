@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agru_price_wizard,AGRUSA wizard,model_agrusa_price_wizard,agrusa_pricelist_mass_management.group_price_mass_manager,1,1,1,1
+access_agru_price_preview,AGRUSA preview,model_agrusa_price_preview,agrusa_pricelist_mass_management.group_price_mass_manager,1,1,1,1
+access_agru_price_batch,AGRUSA batch,model_agrusa_price_batch,agrusa_pricelist_mass_management.group_price_mass_manager,1,0,1,0
+access_agru_price_batch_line,AGRUSA batch line,model_agrusa_price_batch_line,agrusa_pricelist_mass_management.group_price_mass_manager,1,0,1,0

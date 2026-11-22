@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="agrusa_sale_delivery_date_report" inherit_id="sale.report_saleorder_document">
+    <!-- Reutilizar la columna real del PDF personalizado; no insertar columnas adicionales. -->
+    <xpath expr="//th[@name='th_delivery']" position="replace">
+      <th name="th_delivery" class="text-center">
+        <t t-set="colspan_count" t-value="colspan_count + 1"/>
+        PLAZO ENTREGA
+      </th>
+    </xpath>
+    <xpath expr="//td[@name='td_product_delivery']" position="replace">
+      <td name="td_product_delivery" class="text-center">
+        <t t-if="not line.customer_lead">Inmediata</t>
+        <t t-else="">
+          <span t-out="'%s días' % int(line.customer_lead)"/>
+        </t>
+      </td>
+    </xpath>
+  </template>
+</odoo>

@@ -1,0 +1,5 @@
+<odoo>
+    <record id="group_landed_cost_reset" model="res.groups">
+        <field name="name">AGRUSA / Restablecer Costos en Destino</field>
+    </record>
+</odoo>

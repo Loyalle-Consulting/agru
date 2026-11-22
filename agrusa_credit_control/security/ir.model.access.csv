@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_credit_sales,credit.sales,model_agrusa_credit_authorization,sales_team.group_sale_salesman,1,0,1,0
+access_credit_manager,credit.manager,model_agrusa_credit_authorization,agrusa_credit_control.group_credit_authorizer,1,1,1,0

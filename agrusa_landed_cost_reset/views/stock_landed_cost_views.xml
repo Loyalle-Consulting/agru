@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_stock_landed_cost_form_agrusa_reset" model="ir.ui.view">
+        <field name="name">stock.landed.cost.form.agrusa.reset</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button name="action_agrusa_reset_to_draft"
+                        type="object"
+                        string="Restablecer a borrador"
+                        groups="agrusa_landed_cost_reset.group_landed_cost_reset"
+                        invisible="state != 'done'"
+                        confirm="Se verificará que el documento no tenga efectos contables ni ajustes asociados a movimientos de inventario. ¿Continuar?"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
