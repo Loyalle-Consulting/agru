@@ -45,7 +45,11 @@ def _restrict_product_selectors(result):
     return result
 
 
-class _ProductSelectorViewMixin:
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
     @api.model
     def get_view(self, view_id=None, view_type='form', **options):
         result = super().get_view(view_id=view_id, view_type=view_type, **options)
@@ -54,37 +58,89 @@ class _ProductSelectorViewMixin:
         return result
 
 
-class SaleOrder(_ProductSelectorViewMixin, models.Model):
-    _inherit = 'sale.order'
-
-
-class SaleOrderLine(_ProductSelectorViewMixin, models.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class PurchaseOrder(_ProductSelectorViewMixin, models.Model):
+
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class PurchaseOrderLine(_ProductSelectorViewMixin, models.Model):
+
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class StockPicking(_ProductSelectorViewMixin, models.Model):
+
+class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class StockMove(_ProductSelectorViewMixin, models.Model):
+
+class StockMove(models.Model):
     _inherit = 'stock.move'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class StockMoveLine(_ProductSelectorViewMixin, models.Model):
+
+class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class AccountMove(_ProductSelectorViewMixin, models.Model):
+
+class AccountMove(models.Model):
     _inherit = 'account.move'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
 
-class AccountMoveLine(_ProductSelectorViewMixin, models.Model):
+
+class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
+
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type in ('form', 'list', 'kanban'):
+            return _restrict_product_selectors(result)
+        return result
