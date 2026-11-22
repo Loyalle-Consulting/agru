@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_agrusa_product_creator" model="res.groups">
+        <field name="name">AGRUSA - Creacion de productos autorizada</field>
+        <field name="comment">Unico grupo AGRUSA habilitado para crear productos desde el mantenedor. No habilita crear ni editar desde selectores de documentos.</field>
+    </record>
+</odoo>
