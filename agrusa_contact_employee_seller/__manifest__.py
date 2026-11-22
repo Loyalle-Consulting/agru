@@ -1,7 +1,7 @@
 {'name': 'AGRUSA - Vendedor empleado en contactos y ventas',
  'version': '19.0.1.0.0',
  'category': 'Sales',
- 'author': 'Grupo Loyalle',
+ 'author': 'Loyalle Consulting',
  'summary': 'Vendedores empleados con o sin acceso a Odoo',
  'depends': ['sale_management', 'hr'],
  'data': ['views/res_partner_views.xml',
