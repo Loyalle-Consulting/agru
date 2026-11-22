@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_picking_form_delivery_invoice_control" model="ir.ui.view">
+        <field name="name">stock.picking.form.delivery.invoice.control</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_vv_authorize_without_invoice"
+                        string="Autorizar despacho sin factura"
+                        type="object"
+                        class="btn-secondary"
+                        groups="agru_delivery_invoice_control.group_authorize_delivery_without_invoice"
+                        invisible="picking_type_code != 'outgoing' or state in ('done', 'cancel') or vv_invoice_coverage_ok or vv_without_invoice_authorized"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="vv_manual_invoice_id"
+                       options="{'no_create': True, 'no_create_edit': True}"
+                       invisible="picking_type_code != 'outgoing' or state in ('done', 'cancel')"
+                       readonly="state in ('done', 'cancel')"/>
+                <field name="vv_has_posted_invoice" invisible="True"/>
+                <field name="vv_invoice_coverage_ok" invisible="True"/>
+                <field name="vv_without_invoice_authorized" invisible="True"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Control de Facturación" name="vv_invoice_control"
+                      invisible="picking_type_code != 'outgoing'">
+                    <group>
+                        <group string="Facturación">
+                            <field name="vv_has_posted_invoice"/>
+                            <field name="vv_invoice_coverage_ok"/>
+                            <field name="vv_posted_invoice_ids" widget="many2many_tags" readonly="True"/>
+                        </group>
+                        <group string="Autorización excepcional" invisible="not vv_without_invoice_authorized">
+                            <field name="vv_without_invoice_authorized"/>
+                            <field name="vv_without_invoice_authorized_by_id"/>
+                            <field name="vv_without_invoice_authorized_date"/>
+                            <field name="vv_without_invoice_reason"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

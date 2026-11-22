@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_agrusa_partner_address" model="ir.ui.view">
+        <field name="name">sale.order.form.agrusa.partner.address</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="agrusa_invoice_address_ids" invisible="1"/>
+                <field name="agrusa_delivery_address_ids" invisible="1"/>
+            </field>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="domain">[('id', 'in', agrusa_invoice_address_ids)]</attribute>
+                <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="domain">[('id', 'in', agrusa_delivery_address_ids)]</attribute>
+                <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

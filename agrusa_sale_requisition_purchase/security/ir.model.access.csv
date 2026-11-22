@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agrusa_requisition_release,agrusa.requisition.release,model_agrusa_requisition_release,agrusa_sale_requisition_purchase.group_requisition_release,1,1,1,0

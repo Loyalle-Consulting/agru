@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_sale_order_form_agrusa_requisition" model="ir.ui.view">
+    <field name="name">sale.order.form.agrusa.requisition.purchase</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="agrusa_sale_supply_origin.view_order_form_agrusa_supply_origin"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='order_line']//list//field[@name='agrusa_supply_origin']" position="after">
+        <field name="agrusa_requisition_purchase_line_id" optional="hide" readonly="1"/>
+      </xpath>
+      <xpath expr="//field[@name='order_line']//form//field[@name='agrusa_supply_origin']" position="after">
+        <field name="agrusa_requisition_purchase_line_id" readonly="1"/>
+      </xpath>
+      <xpath expr="//header" position="inside">
+        <button name="action_open_agrusa_requisition_release"
+                type="object" string="Liberar reserva de Requisición"
+                groups="agrusa_sale_requisition_purchase.group_requisition_release"
+                invisible="state != 'sale'"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

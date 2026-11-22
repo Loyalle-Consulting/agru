@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_without_invoice_wizard,delivery.without.invoice.wizard,model_agru_delivery_without_invoice_wizard,agru_delivery_invoice_control.group_authorize_delivery_without_invoice,1,1,1,1

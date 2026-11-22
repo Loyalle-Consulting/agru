@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_delivery_without_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">agru.delivery.without.invoice.wizard.form</field>
+        <field name="model">agru.delivery.without.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Autorizar despacho sin factura">
+                <group>
+                    <field name="picking_id"/>
+                    <field name="reason" placeholder="Indique por qué se autoriza este despacho sin una factura publicada..."/>
+                </group>
+                <footer>
+                    <button name="action_authorize" string="Autorizar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
