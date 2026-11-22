@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_agrusa_delivery_move_list" model="ir.ui.view">
+        <field name="name">agrusa.stock.move.delivery.list</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <list string="Entregas por Producto - AGRU" create="false" edit="false" delete="false" default_order="date asc,id asc">
+                <field name="company_id" column_invisible="True"/>
+                <field name="picking_id" string="Entrega"/>
+                <field name="agrusa_sale_order_id" string="Orden de venta" optional="show"/>
+                <field name="agrusa_delivery_partner_id" string="Cliente"/>
+                <field name="product_id" string="Producto"/>
+                <field name="product_uom_qty" string="Cantidad solicitada"/>
+                <field name="quantity" string="Cantidad procesada/reservada" optional="show"/>
+                <field name="product_uom" string="Unidad" optional="hide"/>
+                <field name="date" string="Fecha programada"/>
+                <field name="agrusa_delivery_date_approx" string="Fecha entrega APROX"/>
+                <field name="agrusa_delivery_origin" string="Origen"/>
+                <field name="agrusa_import_order_id" string="OC importación" optional="show"/>
+                <field name="state" string="Estado"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_agrusa_delivery_move_search" model="ir.ui.view">
+        <field name="name">agrusa.stock.move.delivery.search</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <search string="Buscar entregas por producto">
+                <field name="product_id"/>
+                <field name="picking_id"/>
+                <field name="agrusa_sale_order_id"/>
+                <field name="agrusa_delivery_partner_id"/>
+                <field name="agrusa_import_order_id"/>
+                <filter name="pending" string="Pendientes" domain="[('state','not in',('done','cancel'))]"/>
+                <filter name="ready" string="Preparados" domain="[('state','=','assigned')]"/>
+                <filter name="done" string="Realizados" domain="[('state','=','done')]"/>
+                <separator/>
+                <filter name="by_delivery" string="Por entrega" context="{'group_by':'picking_id'}"/>
+                <filter name="by_product" string="Por producto" context="{'group_by':'product_id'}"/>
+                <filter name="by_customer" string="Por cliente" context="{'group_by':'agrusa_delivery_partner_id'}"/>
+                <filter name="by_date" string="Por fecha programada" context="{'group_by':'date:day'}"/>
+                <filter name="by_state" string="Por estado" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_agrusa_delivery_by_product" model="ir.actions.act_window">
+        <field name="name">Entregas por Producto - AGRU</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_agrusa_delivery_move_list"/>
+        <field name="search_view_id" ref="view_agrusa_delivery_move_search"/>
+        <field name="domain">[('picking_id','!=',False),('picking_id.picking_type_id.code','=','outgoing')]</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html"><p>Una fila por movimiento de producto de una entrega de salida. Para validar, abra la transferencia original.</p></field>
+    </record>
+
+    <menuitem id="menu_agrusa_delivery_by_product"
+              name="Entregas por Producto - AGRU"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="action_agrusa_delivery_by_product"
+              sequence="35"/>
+</odoo>

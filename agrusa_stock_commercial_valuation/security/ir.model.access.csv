@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agrusa_valuation_wizard,agrusa.valuation.wizard,model_agrusa_commercial_valuation_wizard,stock.group_stock_user,1,1,1,1
+access_agrusa_valuation_line,agrusa.valuation.line,model_agrusa_commercial_valuation_line,stock.group_stock_user,1,1,1,1

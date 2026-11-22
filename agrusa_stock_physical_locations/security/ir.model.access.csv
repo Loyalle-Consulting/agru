@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agrusa_position_user,agrusa.position.user,model_agrusa_physical_position,stock.group_stock_user,1,0,0,0
+access_agrusa_position_manager,agrusa.position.manager,model_agrusa_physical_position,stock.group_stock_manager,1,1,1,1
+access_agrusa_position_lookup_user,agrusa.position.lookup.user,model_agrusa_position_lookup,stock.group_stock_user,1,1,1,1
+access_agrusa_position_lookup_line_user,agrusa.position.lookup.line.user,model_agrusa_position_lookup_line,stock.group_stock_user,1,1,1,1

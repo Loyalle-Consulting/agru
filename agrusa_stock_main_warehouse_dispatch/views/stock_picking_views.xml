@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_picking_form_main_dispatch" model="ir.ui.view">
+    <field name="name">stock.picking.form.agrusa.main.dispatch</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='origin']" position="after">
+        <field name="agrusa_main_dispatch_transfer_id" readonly="1"/>
+        <field name="agrusa_main_dispatch_origin_id" readonly="1"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

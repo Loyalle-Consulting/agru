@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_agrusa_commercial_valuation_wizard_form" model="ir.ui.view">
+    <field name="name">agrusa.commercial.valuation.wizard.form</field>
+    <field name="model">agrusa.commercial.valuation.wizard</field>
+    <field name="arch" type="xml">
+      <form string="AGRUSA - Valorización comercial" create="0">
+        <header><button name="action_generate" type="object" string="Actualizar informe" class="btn-primary"/></header>
+        <sheet>
+          <group><group><field name="company_id"/><field name="warehouse_id"/><field name="product_id"/></group><group><field name="valuation_date"/><field name="company_currency_id" invisible="1"/></group></group>
+          <div class="alert alert-info" role="alert">Informe comercial informativo. No representa valorización contable. El stock físico se atribuye a la OC mediante lotes exclusivos de recepciones confirmadas. Los lotes compartidos se excluyen de la atribución.</div>
+          <group string="Totales en moneda de la empresa" col="4">
+            <field name="total_physical_clp" readonly="1"/>
+            <field name="total_transit_clp" readonly="1"/>
+            <field name="total_pending_clp" readonly="1"/>
+            <field name="total_free_clp" readonly="1"/>
+          </group>
+          <field name="line_ids" nolabel="1" readonly="1">
+            <list create="0" delete="0" decoration-warning="ambiguous_lot_count &gt; 0">
+              <field name="purchase_order_id"/>
+              <field name="product_id"/>
+              <field name="eta" optional="show"/>
+              <field name="ordered_qty" sum="Comprado"/>
+              <field name="received_qty" sum="Recibido" optional="hide"/>
+              <field name="physical_qty" sum="Físico"/>
+              <field name="physical_reserved_qty" sum="Reservado" optional="show"/>
+              <field name="transit_qty" sum="Tránsito"/>
+              <field name="pending_delivery_qty" sum="Pendiente entregar"/>
+              <field name="free_qty" sum="Libre"/>
+              <field name="unit_price"/>
+              <field name="currency_id"/>
+              <field name="fx_rate" optional="hide"/>
+              <field name="physical_value" optional="hide"/>
+              <field name="transit_value" optional="hide"/>
+              <field name="free_value" optional="hide"/>
+              <field name="physical_value_clp" sum="Físico CLP"/>
+              <field name="transit_value_clp" sum="Tránsito CLP"/>
+              <field name="pending_value_clp" sum="Comprometido CLP" optional="show"/>
+              <field name="free_value_clp" sum="Libre CLP"/>
+              <field name="ambiguous_lot_count" optional="show"/>
+              <field name="company_currency_id" column_invisible="True"/>
+            </list>
+          </field>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <record id="action_agrusa_commercial_valuation" model="ir.actions.act_window">
+    <field name="name">Valorización Comercial AGRUSA</field>
+    <field name="res_model">agrusa.commercial.valuation.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">current</field>
+  </record>
+  <menuitem id="menu_agrusa_commercial_valuation" name="Valorización Comercial AGRUSA" parent="stock.menu_warehouse_report" action="action_agrusa_commercial_valuation" sequence="80" groups="stock.group_stock_user"/>
+</odoo>

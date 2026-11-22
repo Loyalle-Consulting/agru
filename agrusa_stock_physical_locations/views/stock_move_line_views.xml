@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_agrusa_stock_move_line_tree" model="ir.ui.view">
+        <field name="name">agrusa.stock.move.line.list.positions</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field name="agrusa_source_position_id" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="after">
+                <field name="agrusa_dest_position_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Odoo 19: the stock.move operations popup explicitly loads this list via list_view_ref. -->
+    <record id="view_agrusa_stock_move_line_operation_positions" model="ir.ui.view">
+        <field name="name">agrusa.stock.move.line.operation.positions</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="agrusa_source_position_id" string="Posicion fisica origen" optional="show" column_invisible="context.get('picking_code') == 'incoming'"/>
+                <field name="agrusa_dest_position_id" string="Posicion fisica destino" optional="show" column_invisible="context.get('picking_code') == 'outgoing'"/>
+                <field name="agrusa_position_qty_on_hand" string="Existencia fisica" readonly="1" optional="show"/>
+                <button name="action_agrusa_consult_positions" type="object" string="Consultar posiciones" icon="fa-search" column_invisible="context.get('picking_code') == 'incoming'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
