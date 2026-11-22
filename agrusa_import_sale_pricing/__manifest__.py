@@ -6,7 +6,7 @@
     'license': 'LGPL-3',
     'author': 'Loyalle Consulting',
     'depends': ['purchase_stock', 'sale_stock', 'agru_sale_currency_lock', 'agru_sale_stock_visibility'],
-    'data': ['views/purchase_views.xml', 'views/sale_views.xml'],
+    'data': ['views/product_template_views.xml', 'views/purchase_views.xml', 'views/sale_views.xml'],
     'installable': True,
     'application': False,
 }

@@ -135,11 +135,46 @@ class PurchaseOrderLine(models.Model):
     agrusa_reserved_qty = fields.Float(string='Comprometido comercial', compute='_compute_import_reserved', digits='Product Unit of Measure')
     agrusa_available_qty = fields.Float(string='Saldo comercial', compute='_compute_import_reserved', digits='Product Unit of Measure')
 
-    @api.onchange('order_id')
+    def _agrusa_default_line_factor(self, order, product):
+        if order.agrusa_is_import and product and product.agrusa_default_import_factor > 0:
+            return product.agrusa_default_import_factor
+        return order.agrusa_import_factor or 1.0
+
+    @api.onchange('order_id', 'product_id')
     def _onchange_import_factor(self):
         for line in self:
-            if line.order_id:
-                line.agrusa_import_factor = line.order_id.agrusa_import_factor
+            if line.order_id and not line.display_type:
+                line.agrusa_import_factor = line._agrusa_default_line_factor(
+                    line.order_id, line.product_id)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        defaults = self.default_get(['order_id', 'product_id'])
+        for vals in vals_list:
+            if 'agrusa_import_factor' in vals or vals.get('display_type'):
+                continue
+            order = self.env['purchase.order'].browse(
+                vals.get('order_id', defaults.get('order_id')))
+            product = self.env['product.product'].browse(
+                vals.get('product_id', defaults.get('product_id')))
+            if order and product and order.agrusa_is_import:
+                vals['agrusa_import_factor'] = self._agrusa_default_line_factor(order, product)
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if 'product_id' in vals and 'agrusa_import_factor' not in vals:
+            product = self.env['product.product'].browse(vals['product_id'])
+            for line in self:
+                if (product and product != line.product_id and
+                        line.order_id.agrusa_is_import and
+                        line.order_id.state in ('draft', 'sent')):
+                    line_vals = dict(vals, agrusa_import_factor=line._agrusa_default_line_factor(
+                        line.order_id, product))
+                    super(PurchaseOrderLine, line).write(line_vals)
+                else:
+                    super(PurchaseOrderLine, line).write(vals)
+            return True
+        return super().write(vals)
 
     @api.depends('price_unit', 'agrusa_import_factor')
     def _compute_import_base_price(self):
