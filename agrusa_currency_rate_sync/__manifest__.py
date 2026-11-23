@@ -1,0 +1,1 @@
+{'name':'AGRUSA - Paridades Banco Central','version':'19.0.1.0.0','depends':['account','currency_rate_live'],'data':['security/ir.model.access.csv','security/rules.xml','views/views.xml','author': 'Loyalle Consulting','data/cron.xml'],'installable':True,'license':'LGPL-3'}
