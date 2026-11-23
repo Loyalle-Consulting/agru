@@ -2,7 +2,7 @@
     'name': 'AGRUSA - Despacho exclusivo desde Bodega Principal',
     'version': '19.0.1.0.0',
     'category': 'Inventory/Inventory',
-    'author': 'Loyalle Consulting',
+    'author': 'Loyalle Consulting
     'summary': 'Transferencia interna controlada antes del despacho desde WH',
     'license': 'LGPL-3',
     'depends': [

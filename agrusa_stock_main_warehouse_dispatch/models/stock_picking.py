@@ -166,6 +166,66 @@ class StockPicking(models.Model):
                                  'antes de completar esta entrega.') % transfer.name)
         return self._agrusa_open_transfer(transfer)
 
+    def _agrusa_check_dispatch_reservations(self, moves):
+        """Reject stale/phantom reservations on converted outgoing deliveries.
+
+        Only called for deliveries linked to an already completed AGRUSA transfer.
+        This does not change inventory, allocations, or historical operations.
+        """
+        from odoo.tools import float_compare
+
+        Quant = self.env['stock.quant'].sudo()
+        for move in moves:
+            rounding = move.product_uom.rounding
+            lines = move.move_line_ids.filtered(lambda l: l.quantity > 0)
+            if not lines:
+                raise UserError(_(
+                    'AGRUSA: la entrega %s no tiene lineas reservadas validas. '
+                    'Revise la disponibilidad fisica y vuelva a reservar.'
+                ) % self.name)
+            qty = sum(lines.mapped('quantity'))
+            if float_compare(qty, move.product_uom_qty, precision_rounding=rounding) != 0:
+                raise UserError(_(
+                    'AGRUSA: la cantidad reservada del producto %s no coincide '
+                    'con la demanda de la entrega %s.'
+                ) % (move.product_id.display_name, self.name))
+
+            # Group by exact source location; a parent WH/Stock quant does not
+            # justify a reservation against a physical child rack location.
+            by_location = {}
+            for line in lines:
+                location = line.location_id
+                position = location.agrusa_physical_position_id
+                if not position or not line.agrusa_source_position_id or line.agrusa_source_position_id != position:
+                    raise UserError(_(
+                        'AGRUSA: la entrega %s tiene el producto %s sin una '
+                        'posicion fisica de origen coherente. Revise y reasigne '
+                        'la reserva antes de validar.'
+                    ) % (self.name, move.product_id.display_name))
+                by_location[location.id] = by_location.get(location.id, 0.0) + line.quantity
+
+            for location_id, required_qty in by_location.items():
+                quants = Quant.search([
+                    ('company_id', '=', self.company_id.id),
+                    ('product_id', '=', move.product_id.id),
+                    ('location_id', '=', location_id),
+                ])
+                physical = sum(quants.mapped('quantity'))
+                reserved = sum(quants.mapped('reserved_quantity'))
+                if (float_compare(physical, required_qty, precision_rounding=rounding) < 0
+                        or float_compare(reserved, required_qty, precision_rounding=rounding) < 0
+                        or float_compare(physical, reserved, precision_rounding=rounding) < 0):
+                    raise UserError(_(
+                        'AGRUSA: reserva inconsistente en la entrega %s para %s. '
+                        'Ubicacion: %s. Fisico: %s; reservado: %s; '
+                        'cantidad de la entrega: %s. '
+                        'Regularice la disponibilidad y la reserva antes de validar.'
+                    ) % (
+                        self.name, move.product_id.display_name,
+                        self.env['stock.location'].browse(location_id).display_name,
+                        physical, reserved, required_qty,
+                    ))
+
     def button_validate(self):
         for picking in self:
             transfer = picking.agrusa_main_dispatch_transfer_id
@@ -180,6 +240,7 @@ class StockPicking(models.Model):
                 if any(m.state != 'assigned' for m in pending):
                     raise UserError(_('AGRUSA: no se pudo reservar la mercaderia recibida '
                                       'en Bodega Principal. Revise posiciones y lotes.'))
+                picking._agrusa_check_dispatch_reservations(pending)
             elif picking._agrusa_dispatch_required():
                 if len(self) != 1:
                     raise UserError(_('AGRUSA: valide las entregas de bodegas secundarias individualmente.'))
