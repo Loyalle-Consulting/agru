@@ -9,6 +9,8 @@ class AgrusaPositionLookup(models.TransientModel):
     move_line_id = fields.Many2one('stock.move.line', required=True, readonly=True)
     product_id = fields.Many2one('product.product', readonly=True)
     warehouse_id = fields.Many2one('stock.warehouse', readonly=True)
+    direction = fields.Selection([('source', 'Origen'), ('destination', 'Destino')],
+                                 required=True, default='source', readonly=True)
     demand_qty = fields.Float(string='Cantidad de la linea', readonly=True)
     position_line_ids = fields.One2many('agrusa.position.lookup.line', 'wizard_id', readonly=True)
 
@@ -30,10 +32,28 @@ class AgrusaPositionLookupLine(models.TransientModel):
         move_line = self.wizard_id.move_line_id.exists()
         if not move_line or move_line.state in ('done', 'cancel'):
             raise UserError(_('La operacion ya no permite modificar su posicion.'))
-        if not self.location_id or not self.position_id:
+        if not self.position_id:
             raise UserError(_('Posicion sin ubicacion valida.'))
         if move_line.product_id != self.wizard_id.product_id:
             raise UserError(_('El producto de la operacion ha cambiado.'))
+        direction = move_line._agrusa_lookup_direction()
+        if direction != self.wizard_id.direction:
+            raise UserError(_('El sentido de la operacion ha cambiado. Actualice la consulta.'))
+        if direction == 'destination':
+            wh = move_line._agrusa_warehouse_for_location(move_line.location_dest_id)
+            if not wh or wh != self.wizard_id.warehouse_id:
+                raise UserError(_('La bodega de destino ya no coincide. Actualice la consulta.'))
+            if not self.position_id.active:
+                raise UserError(_('La posicion esta inactiva.'))
+            if self.location_id and (
+                    self.location_id.agrusa_position_warehouse_id != wh or
+                    self.location_id.agrusa_physical_position_id != self.position_id or
+                    self.location_id.location_id != wh.lot_stock_id):
+                raise UserError(_('La ubicacion de destino ya no coincide. Actualice la consulta.'))
+            move_line.write({'agrusa_dest_position_id': self.position_id.id})
+            return {'type': 'ir.actions.act_window_close'}
+        if not self.location_id:
+            raise UserError(_('Posicion sin ubicacion valida.'))
         wh = move_line._agrusa_warehouse_for_location(move_line.location_id)
         if wh != self.wizard_id.warehouse_id or self.location_id.agrusa_position_warehouse_id != wh:
             raise UserError(_('La bodega de origen ya no coincide. Actualice la consulta.'))

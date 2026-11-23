@@ -197,20 +197,26 @@ class StockMoveLine(models.Model):
             self._agrusa_check_positions()
         return super()._action_done()
 
+    def _agrusa_lookup_direction(self):
+        self.ensure_one()
+        picking_type = self.picking_id.picking_type_id or self.move_id.picking_type_id
+        if picking_type.code == 'incoming' or (
+                self.location_id.usage != 'internal' and
+                self.location_dest_id.usage == 'internal'):
+            return 'destination'
+        return 'source'
+
     def action_agrusa_consult_positions(self):
         self.ensure_one()
-        # The operations popup may not provide a reliable picking_code context.
-        # Route by the actual operation type, not by the UI context.
-        picking_type = self.picking_id.picking_type_id or self.move_id.picking_type_id
-        if picking_type.code == 'incoming':
-            return self.action_agrusa_consult_incoming_positions()
         if not self.id or not self.product_id:
             raise UserError(_('Guarde primero la linea de operacion con su producto.'))
         if self.state in ('done', 'cancel'):
             raise UserError(_('No se puede cambiar la posicion de un movimiento finalizado.'))
-        if self.location_id.usage != 'internal':
-            raise UserError(_('Esta consulta corresponde a salidas desde ubicaciones internas.'))
-        warehouse = self._agrusa_warehouse_for_location(self.location_id)
+        direction = self._agrusa_lookup_direction()
+        base = self.location_dest_id if direction == 'destination' else self.location_id
+        if base.usage != 'internal':
+            raise UserError(_('La ubicacion consultada debe ser interna.'))
+        warehouse = self._agrusa_warehouse_for_location(base)
         Quant = self.env['stock.quant'].sudo()
         grouped = Quant.read_group([
             ('product_id', '=', self.product_id.id),
@@ -223,7 +229,7 @@ class StockMoveLine(models.Model):
         for group in grouped:
             location = self.env['stock.location'].browse(group['location_id'][0])
             quantity = group.get('quantity', 0.0)
-            if quantity <= 0:
+            if direction == 'source' and quantity <= 0:
                 continue
             reserved = group.get('reserved_quantity', 0.0)
             rows.append((0, 0, {
@@ -233,7 +239,22 @@ class StockMoveLine(models.Model):
                 'qty_reserved': reserved,
                 'qty_free': quantity - reserved,
             }))
+        if direction == 'destination':
+            positions = self.env['agrusa.physical.position'].search([('active', '=', True)])
+            locations = self.env['stock.location'].search([
+                ('agrusa_position_warehouse_id', '=', warehouse.id),
+                ('location_id', '=', warehouse.lot_stock_id.id),
+                ('usage', '=', 'internal'),
+            ])
+            mapped = {loc.agrusa_physical_position_id.id: loc.id for loc in locations}
+            existing = {row[2]['position_id']: row[2] for row in rows}
+            rows = [(0, 0, existing.get(pos.id) or {
+                'position_id': pos.id,
+                'location_id': mapped.get(pos.id, False),
+                'qty_on_hand': 0.0, 'qty_reserved': 0.0, 'qty_free': 0.0,
+            }) for pos in positions]
         wizard = self.env['agrusa.position.lookup'].create({
+            'direction': direction,
             'move_line_id': self.id,
             'product_id': self.product_id.id,
             'warehouse_id': warehouse.id,
@@ -242,7 +263,8 @@ class StockMoveLine(models.Model):
         })
         return {
             'type': 'ir.actions.act_window',
-            'name': _('Consultar posiciones disponibles'),
+            'name': _('Consultar posiciones de destino') if direction == 'destination'
+                    else _('Consultar posiciones disponibles'),
             'res_model': 'agrusa.position.lookup',
             'res_id': wizard.id,
             'view_mode': 'form',
