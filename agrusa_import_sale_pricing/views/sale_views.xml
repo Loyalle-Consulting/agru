@@ -10,7 +10,7 @@
     <field name="agrusa_import_fx_rate" invisible="total_currency_id == False"/>
    </xpath>
    <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
-    <field name="agrusa_import_purchase_line_id" context="{'agrusa_import_selector': True}" optional="show"/>
+    <field name="agrusa_import_purchase_line_id" context="{'agrusa_import_selector': True, 'agrusa_import_selector_product_id': product_id}" optional="show"/>
     <field name="agrusa_import_available_qty" optional="show" readonly="1"/>
     <field name="agru_manual_price" column_invisible="True"/>
     <field name="agrusa_oc_factor_price" optional="show" readonly="1"/>
@@ -21,7 +21,7 @@
     <field name="agru_price_advice" optional="show" readonly="1" decoration-danger="agru_price_difference_pct &lt; 0" decoration-warning="agru_price_difference_pct &gt; 0"/>
    </xpath>
    <xpath expr="//field[@name='order_line']//form//field[@name='product_uom_id']" position="after">
-    <field name="agrusa_import_purchase_line_id" context="{'agrusa_import_selector': True}"/>
+    <field name="agrusa_import_purchase_line_id" context="{'agrusa_import_selector': True, 'agrusa_import_selector_product_id': product_id}"/>
     <field name="agrusa_import_available_qty" readonly="1"/>
     <field name="agru_manual_price" invisible="1"/>
     <field name="agrusa_oc_factor_price" readonly="1"/>

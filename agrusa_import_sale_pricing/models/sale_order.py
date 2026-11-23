@@ -95,7 +95,7 @@ class SaleOrderLine(models.Model):
 
     agrusa_import_purchase_line_id = fields.Many2one(
         'purchase.order.line', string='Origen importacion (linea OC)', copy=False,
-        domain="[('product_id', '=', product_id), ('order_id.agrusa_is_import', '=', True), ('order_id.state', 'in', ['purchase', 'done'])]",
+        domain="[('product_id', '=', product_id), ('order_id.agrusa_is_import', '=', True), ('order_id.state', 'in', ['purchase', 'done']), ('agrusa_import_selectable', '=', True)]",
     )
     agrusa_import_factor_snapshot = fields.Float(string='Factor aplicado', copy=False, digits=(16, 6), readonly=True)
     agrusa_import_rate_snapshot = fields.Float(string='Tasa aplicada', copy=False, digits=(24, 12), readonly=True)

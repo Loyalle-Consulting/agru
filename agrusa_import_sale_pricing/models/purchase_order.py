@@ -134,6 +134,67 @@ class PurchaseOrderLine(models.Model):
     agrusa_import_base_price = fields.Monetary(string='Precio comercial en moneda OC', compute='_compute_import_base_price', currency_field='currency_id')
     agrusa_reserved_qty = fields.Float(string='Comprometido comercial', compute='_compute_import_reserved', digits='Product Unit of Measure')
     agrusa_available_qty = fields.Float(string='Saldo comercial', compute='_compute_import_reserved', digits='Product Unit of Measure')
+    # Campo de busqueda exclusivo del selector de OC de importacion.
+    # No se almacena: la disponibilidad depende de ventas confirmadas de otras ordenes.
+    agrusa_import_selectable = fields.Boolean(
+        string='OC con recepcion pendiente y saldo comercial',
+        compute='_compute_import_selectable',
+        search='_search_import_selectable',
+    )
+
+    def _compute_import_selectable(self):
+        for line in self:
+            line.agrusa_import_selectable = (
+                line.order_id.agrusa_is_import
+                and line.order_id.state in ('purchase', 'done')
+                and (line.product_qty - line.qty_received) > 0
+                and line.agrusa_available_qty > 0
+            )
+
+    @api.model
+    def _search_import_selectable(self, operator, value):
+        """Buscar OC pendientes de recibir con saldo comercial positivo.
+
+        El producto se recibe desde el contexto de la fila de venta para no
+        recorrer todas las OC historicas al abrir el desplegable.
+        """
+        # Odoo 19 normaliza los dominios Boolean a 'in'/'not in' durante
+        # optimize_full(), incluso si el dominio original utiliza '='.
+        # Interpretar el conjunto de valores en vez de rechazar la busqueda.
+        if operator in ('=', '=='):
+            positive = bool(value)
+        elif operator == '!=':
+            positive = not bool(value)
+        elif operator == 'in':
+            positive = True in value
+            negative = False in value
+            if positive and negative:
+                return []
+            if not positive and not negative:
+                return [('id', 'in', [])]
+        elif operator == 'not in':
+            positive = False not in value
+            negative = True not in value
+            if positive and negative:
+                return []
+            if not positive and not negative:
+                return [('id', 'in', [])]
+        else:
+            raise ValueError('Operador no admitido para agrusa_import_selectable: %s' % operator)
+        domain = [
+            ('order_id.agrusa_is_import', '=', True),
+            ('order_id.state', 'in', ('purchase', 'done')),
+        ]
+        product_id = self.env.context.get('agrusa_import_selector_product_id')
+        if product_id:
+            domain.append(('product_id', '=', product_id))
+        candidates = self.search(domain)
+        available_ids = candidates.filtered(
+            lambda line: (line.product_qty - line.qty_received) > 0
+            and line.agrusa_available_qty > 0
+        ).ids
+        return [('id', 'in' if positive else 'not in', available_ids)]
+
 
     def _agrusa_default_line_factor(self, order, product):
         if order.agrusa_is_import and product and product.agrusa_default_import_factor > 0:
