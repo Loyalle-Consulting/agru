@@ -23,7 +23,7 @@
                 <field name="agrusa_source_position_id" string="Posicion fisica origen" optional="show" column_invisible="context.get('picking_code') == 'incoming'"/>
                 <field name="agrusa_dest_position_id" string="Posicion fisica destino" optional="show" column_invisible="context.get('picking_code') == 'outgoing'"/>
                 <field name="agrusa_position_qty_on_hand" string="Existencia fisica" readonly="1" optional="show"/>
-                <button name="action_agrusa_consult_positions" type="object" string="Consultar posiciones" icon="fa-search" column_invisible="context.get('picking_code') == 'incoming'"/>
+                <button name="action_agrusa_consult_positions" type="object" string="Consultar posiciones" icon="fa-search" column_invisible="False"/>
             </xpath>
         </field>
     </record>

@@ -25,6 +25,7 @@
     <record id="view_agrusa_stock_move_line_incoming_consult" model="ir.ui.view">
         <field name="name">agrusa.stock.move.line.incoming.consult</field>
         <field name="model">stock.move.line</field>
+        <field name="active" eval="False"/>
         <field name="inherit_id" ref="agrusa_stock_physical_locations.view_agrusa_stock_move_line_operation_positions"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_agrusa_consult_positions']" position="after">

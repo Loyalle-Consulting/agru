@@ -199,6 +199,11 @@ class StockMoveLine(models.Model):
 
     def action_agrusa_consult_positions(self):
         self.ensure_one()
+        # The operations popup may not provide a reliable picking_code context.
+        # Route by the actual operation type, not by the UI context.
+        picking_type = self.picking_id.picking_type_id or self.move_id.picking_type_id
+        if picking_type.code == 'incoming':
+            return self.action_agrusa_consult_incoming_positions()
         if not self.id or not self.product_id:
             raise UserError(_('Guarde primero la linea de operacion con su producto.'))
         if self.state in ('done', 'cancel'):
