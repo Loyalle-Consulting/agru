@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="videovision_credit_control.menu_vv_credit_pending_orders" model="ir.ui.menu">
-        <field name="name">Pendientes de aprobación</field>
-    </record>
-    <!-- Reunión 12-nov: se quita el menú "Reservas con problema de crédito" (queda el filtro en la búsqueda). -->
-</odoo>
