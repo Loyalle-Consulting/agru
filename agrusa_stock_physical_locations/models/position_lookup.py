@@ -59,13 +59,13 @@ class AgrusaPositionLookupLine(models.TransientModel):
                 raise UserError(_('La ubicacion de destino ya no coincide. Actualice la consulta.'))
             move_line.write({'agrusa_dest_position_id': self.position_id.id})
             return {'type': 'ir.actions.act_window_close'}
-        if not self.location_id:
-            raise UserError(_('Posicion sin ubicacion valida.'))
         wh = move_line._agrusa_warehouse_for_location(move_line.location_id)
-        if wh != self.wizard_id.warehouse_id or self.location_id.agrusa_position_warehouse_id != wh:
+        if wh != self.wizard_id.warehouse_id:
             raise UserError(_('La bodega de origen ya no coincide. Actualice la consulta.'))
-        if move_line.quantity > self.qty_on_hand:
-            raise UserError(_('La cantidad supera la existencia fisica de esta posicion.'))
-        # Respect Odoo's reservation checks; do not force, unreserve, or assign quants here.
+        if not self.position_id.active:
+            raise UserError(_('La posicion esta inactiva.'))
+        if self.location_id and (self.location_id.agrusa_position_warehouse_id != wh or
+                self.location_id.agrusa_physical_position_id != self.position_id):
+            raise UserError(_('La ubicacion de origen ya no coincide. Actualice la consulta.'))
         move_line.write({'agrusa_source_position_id': self.position_id.id})
         return {'type': 'ir.actions.act_window_close'}
