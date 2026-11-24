@@ -11,6 +11,13 @@ class AgrusaPositionLookup(models.TransientModel):
     warehouse_id = fields.Many2one('stock.warehouse', readonly=True)
     direction = fields.Selection([('source', 'Origen'), ('destination', 'Destino')],
                                  required=True, default='source', readonly=True)
+    consultation_only = fields.Boolean(string='Solo consulta', compute='_compute_consultation_only')
+
+    @api.depends('move_line_id', 'move_line_id.state')
+    def _compute_consultation_only(self):
+        for wizard in self:
+            wizard.consultation_only = not wizard.move_line_id or wizard.move_line_id.state in ('done', 'cancel')
+
     demand_qty = fields.Float(string='Cantidad de la linea', readonly=True)
     position_line_ids = fields.One2many('agrusa.position.lookup.line', 'wizard_id', readonly=True)
 

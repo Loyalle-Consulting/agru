@@ -10,6 +10,7 @@
           <field name="warehouse_id"/>
           <field name="demand_qty"/>
           <field name="direction" string="Posiciones de"/>
+          <field name="consultation_only" readonly="1"/>
         </group>
         <field name="position_line_ids" nolabel="1">
           <list create="false" delete="false" edit="false">
@@ -17,7 +18,7 @@
             <field name="qty_on_hand"/>
             <field name="qty_reserved"/>
             <field name="qty_free"/>
-            <button name="action_select_position" type="object" string="Seleccionar" icon="fa-check"/>
+            <button name="action_select_position" type="object" string="Seleccionar" icon="fa-check" column_invisible="parent.consultation_only"/>
           </list>
         </field>
         <footer>

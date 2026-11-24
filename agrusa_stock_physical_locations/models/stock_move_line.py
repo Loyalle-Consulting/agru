@@ -210,8 +210,6 @@ class StockMoveLine(models.Model):
         self.ensure_one()
         if not self.id or not self.product_id:
             raise UserError(_('Guarde primero la linea de operacion con su producto.'))
-        if self.state in ('done', 'cancel'):
-            raise UserError(_('No se puede cambiar la posicion de un movimiento finalizado.'))
         direction = self._agrusa_lookup_direction()
         base = self.location_dest_id if direction == 'destination' else self.location_id
         if base.usage != 'internal':
