@@ -211,6 +211,7 @@ class StockMoveLine(models.Model):
         if not self.id or not self.product_id:
             raise UserError(_('Guarde primero la linea de operacion con su producto.'))
         direction = self._agrusa_lookup_direction()
+        consultation_only = self.state in ('done', 'cancel')
         base = self.location_dest_id if direction == 'destination' else self.location_id
         if base.usage != 'internal':
             raise UserError(_('La ubicacion consultada debe ser interna.'))
@@ -227,7 +228,7 @@ class StockMoveLine(models.Model):
         for group in grouped:
             location = self.env['stock.location'].browse(group['location_id'][0])
             quantity = group.get('quantity', 0.0)
-            if direction == 'source' and quantity <= 0:
+            if direction == 'source' and not consultation_only and quantity <= 0:
                 continue
             reserved = group.get('reserved_quantity', 0.0)
             rows.append((0, 0, {
@@ -237,7 +238,7 @@ class StockMoveLine(models.Model):
                 'qty_reserved': reserved,
                 'qty_free': quantity - reserved,
             }))
-        if direction == 'destination':
+        if direction == 'destination' or consultation_only:
             positions = self.env['agrusa.physical.position'].search([('active', '=', True)])
             locations = self.env['stock.location'].search([
                 ('agrusa_position_warehouse_id', '=', warehouse.id),
