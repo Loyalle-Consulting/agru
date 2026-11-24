@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Reunión 05-nov: todos ven las condiciones de crédito (incluidas tolerancias); solo
+         "Administrar crédito de clientes" las edita. Un solo campo con readonly calculado en vez de
+         campos duplicados por grupo (evita que un usuario no vea campos según el orden de grupos). -->
+    <record id="view_partner_form_vv_credit_invoice" model="ir.ui.view">
+        <field name="name">res.partner.form.vv.credit.invoice</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="videovision_credit_control.view_partner_form_vv_credit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='vv_credit']/group[1]" position="replace">
+                <field name="vv_credit_is_manager" invisible="1"/>
+                <group>
+                    <group string="Condición de crédito">
+                        <field name="vv_credit_policy" readonly="not vv_credit_is_manager"/>
+                        <field name="vv_credit_limit" invisible="vv_credit_policy != 'limit'" readonly="not vv_credit_is_manager"/>
+                        <field name="vv_credit_overdue_tolerance_amount" readonly="not vv_credit_is_manager"/>
+                        <field name="vv_credit_overdue_tolerance_days" readonly="not vv_credit_is_manager"/>
+                        <field name="property_payment_term_id" string="Plazo de pago" readonly="not vv_credit_is_manager"/>
+                    </group>
+                    <group string="Seguro de crédito">
+                        <field name="vv_credit_insurance" readonly="not vv_credit_is_manager"/>
+                        <field name="vv_credit_insurance_date" readonly="not vv_credit_is_manager"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='vv_credit_orders']" position="attributes">
+                <attribute name="string">Pedidos por facturar (dato)</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_vv_open_pending_orders']" position="attributes">
+                <attribute name="string">Pendientes de aprobación</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
